@@ -30,6 +30,15 @@ def retassure(cond, err):
 		caller = os.path.basename(caller_frame.filename)
 		raise m1n1Exception(PACKAGE_NAME, err, caller)
 
+def assure(cond):
+	if (PACKAGE_NAME is None) and (not locked):
+		sys.exit('Internal error: PACKAGE_NAME was not set!')
+	if not (cond):
+		caller_frame = inspect.stack()[1]
+		caller = os.path.basename(caller_frame.filename)
+		raise m1n1Exception(PACKAGE_NAME, "assure failed", caller)
+
+
 def retcustomassure(cond, exception):
 	if not (cond):
 		raise exception
