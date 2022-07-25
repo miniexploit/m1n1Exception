@@ -1,5 +1,6 @@
 from .functions import *
 from .exceptions import *
+from .logging import *
 
 __version__ = '2.6'
 
